@@ -1,5 +1,6 @@
 import {
   SEARCH_IMAGES,
+  SEARCH_IMAGES_PAG,
   SET_ERROR,
   SET_LOADING,
   REMOVE_ERROR,
@@ -11,9 +12,20 @@ export default (state, action) => {
     case SEARCH_IMAGES:
       return {
         ...state,
-        images: action.payload,
+        images: action.payload[0],
         loading: false,
         rand: false,
+        query: action.payload[1],
+        totalResults: action.payload[0].total,
+      };
+    case SEARCH_IMAGES_PAG:
+      return {
+        ...state,
+        images: action.payload[0],
+        loading: false,
+        rand: false,
+        currentPage: action.payload[1],
+        // totalResults: action.payload[0].total_pages,
       };
     case GET_RAND_IMG:
       return {

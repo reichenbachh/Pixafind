@@ -1,4 +1,5 @@
 export const SEARCH_IMAGES = "SEARCH_IMAGES";
+export const SEARCH_IMAGES_PAG = "SEARCH_IMAGES_PAG";
 export const GET_RAND_IMG = "GET_RAND_IMG";
 export const SEARCH_VIDEOS = "SEARCH_VIDEOS";
 export const SEARCH_FAIL = "SEARCH_FAIL";

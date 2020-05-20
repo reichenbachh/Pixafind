@@ -7,6 +7,7 @@ import {
   SEARCH_VIDEOS,
   SET_ERROR,
   GET_RAND_IMG,
+  SEARCH_IMAGES_PAG,
   SET_LOADING,
   SEARCH_FAIL,
   REMOVE_ERROR,
@@ -18,6 +19,9 @@ const SearchState = (props) => {
     loading: true,
     error: null,
     rand: true,
+    query: "",
+    totalResults: 0,
+    currentPage: 2,
   };
 
   const [state, dispatch] = useReducer(SearchReducer, initialState);
@@ -32,9 +36,11 @@ const SearchState = (props) => {
         type: GET_RAND_IMG,
         payload: res.data,
       });
-      console.log(res.data);
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: SEARCH_FAIL,
+        payload: error,
+      });
     }
   };
 
@@ -42,22 +48,20 @@ const SearchState = (props) => {
   const srchImg = async (query) => {
     try {
       const res = await axios.get(
-        `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}&count=30&query=${query}`
+        `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}&page=1&per_page=30&query=${query}`
       );
       dispatch({
         type: SEARCH_IMAGES,
-        payload: res.data,
+        payload: [res.data, query],
       });
       console.log(res.data);
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: SEARCH_FAIL,
+        payload: error,
+      });
     }
   };
-
-  //Set loading
-  // const setLoading = () => {
-  //   dispatch({ type: SET_LOADING });
-  // };
 
   //Set Error
   const setError = (message) => {
@@ -78,6 +82,30 @@ const SearchState = (props) => {
     }, 3000);
   };
 
+  //Pagination logic
+
+  //next page method
+  const nextpage = async (PageNumber, query) => {
+    try {
+      const res = await axios.get(
+        `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}&page=${PageNumber}&per_page=30&query=${query}`
+      );
+      dispatch({
+        type: SEARCH_IMAGES_PAG,
+        payload: [res.data, PageNumber],
+      });
+      console.log(res.data);
+    } catch (error) {
+      dispatch({
+        type: SEARCH_FAIL,
+        payload: error,
+      });
+    }
+  };
+
+  const test = async () => {
+    console.log(true);
+  };
   return (
     <SearchContext.Provider
       value={{
@@ -85,6 +113,11 @@ const SearchState = (props) => {
         error: state.error,
         loading: state.loading,
         rand: state.rand,
+        query: state.query,
+        currentPage: state.currentPage,
+        totalResults: state.totalResults,
+        nextpage,
+        test,
         setError,
         getRandImg,
         srchImg,
