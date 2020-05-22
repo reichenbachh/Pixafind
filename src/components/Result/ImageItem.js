@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import SearchContext from "../../context/Search/SearchContext";
 
-const ImageItem = ({ image: { urls, user, likes, views } }) => {
+const ImageItem = ({ image: { urls, user, likes, views, id } }) => {
+  const searchContext = useContext(SearchContext);
   return (
     <div className='image-holder'>
-      <img src={urls.small} alt='' srcSet='' />
+      <a
+        href='#image-detail-modal'
+        className='modal-trigger'
+        onClick={() => searchContext.fetchInfo(id)}
+      >
+        <img src={urls.small} alt='' srcSet='' />
+      </a>
       <div className='info'>
         <div className='name'>{user.first_name}</div>
         <div className='info-secondary'>

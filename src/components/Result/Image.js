@@ -8,6 +8,7 @@ const Image = () => {
   const searchContext = useContext(SearchContext);
   const {
     getRandImg,
+    fetchInfoRand,
     images,
     loading,
     rand,
@@ -18,6 +19,7 @@ const Image = () => {
 
   useEffect(() => {
     getRandImg();
+    fetchInfoRand();
     //eslint-disable-next-line
   }, []);
 
