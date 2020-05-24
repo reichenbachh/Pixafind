@@ -1,4 +1,5 @@
-import React, { useEffect, useContext } from "react";
+import React, { Fragment, useEffect, useContext } from "react";
+import ImageDetails from "./ImageDetails";
 import Pagination from "../layout/Pagination";
 import ImageItem from "./ImageItem";
 import Preloader from "../layout/Preloader";
@@ -20,7 +21,7 @@ const Image = () => {
   useEffect(() => {
     getRandImg();
     fetchInfoRand();
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const numberPages = Math.floor(totalResults / 30);
@@ -30,10 +31,14 @@ const Image = () => {
     return (
       <div className='image-container'>
         {images.map((image) => (
-          <ImageItem image={image} key={image.id} />
+          <ImageItem image={image} data={image.location} key={image.id} />
         ))}
         {totalResults > 30 ? (
-          <Pagination pages={numberPages} currentPage={currentPage} />
+          <Pagination
+            pages={numberPages}
+            currentPage={currentPage}
+            query={query}
+          />
         ) : (
           " "
         )}

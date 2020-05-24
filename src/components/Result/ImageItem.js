@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
+import ImageDetails from "./ImageDetails";
 import SearchContext from "../../context/Search/SearchContext";
 
-const ImageItem = ({ image: { urls, user, likes, views, id } }) => {
+const ImageItem = ({ count, image: { urls, user, likes, views, id } }) => {
   const searchContext = useContext(SearchContext);
   return (
     <div className='image-holder'>
@@ -25,6 +26,7 @@ const ImageItem = ({ image: { urls, user, likes, views, id } }) => {
           </p>
         </div>
       </div>
+      <ImageDetails bio={user.bio} />
     </div>
   );
 };

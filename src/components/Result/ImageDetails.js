@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import SearchContext from "../../context/Search/SearchContext";
 
-const ImageDetails = () => {
+const ImageDetails = ({ count }) => {
   const searchContext = useContext(SearchContext);
   const { details } = searchContext;
   const { user } = details;

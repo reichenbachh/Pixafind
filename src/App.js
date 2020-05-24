@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Search from "./components/Search";
 import Image from "./components/Result/Image";
-import ImageDetails from "./components/Result/ImageDetails";
+
 import Error from "./components/layout/Error";
 import Nav from "./components/layout/Nav";
 import M from "materialize-css/dist/js/materialize.min.js";
@@ -20,7 +20,6 @@ function App() {
         <Error />
         <Search />
         <Image />
-        <ImageDetails />
       </div>
     </SearchState>
   );

@@ -65,7 +65,7 @@ const SearchState = (props) => {
     }
   };
 
-  //Fetch Email details
+  // Fetch Email details
   const fetchInfo = async (id) => {
     try {
       const res = await axios.get(
