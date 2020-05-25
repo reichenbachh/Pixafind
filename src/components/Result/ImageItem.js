@@ -1,18 +1,14 @@
 import React, { useContext } from "react";
-import ImageDetails from "./ImageDetails";
+import { Link } from "react-router-dom";
 import SearchContext from "../../context/Search/SearchContext";
 
-const ImageItem = ({ count, image: { urls, user, likes, views, id } }) => {
+const ImageItem = ({ image: { urls, user, likes, views, id } }) => {
   const searchContext = useContext(SearchContext);
   return (
     <div className='image-holder'>
-      <a
-        href='#image-detail-modal'
-        className='modal-trigger'
-        onClick={() => searchContext.fetchInfo(id)}
-      >
+      <Link to={`/imageDetails/${id}`} className='modal-trigger'>
         <img src={urls.small} alt='' srcSet='' />
-      </a>
+      </Link>
       <div className='info'>
         <div className='name'>{user.first_name}</div>
         <div className='info-secondary'>
@@ -26,7 +22,6 @@ const ImageItem = ({ count, image: { urls, user, likes, views, id } }) => {
           </p>
         </div>
       </div>
-      <ImageDetails bio={user.bio} />
     </div>
   );
 };

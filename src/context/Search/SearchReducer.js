@@ -1,8 +1,7 @@
 import {
   SEARCH_IMAGES,
   SEARCH_IMAGES_PAG,
-  SEARCH_IMAGES_INFO,
-  SEARCH_IMAGES_INFO_1,
+  SEARCH_IMAGE_INFO,
   SET_ERROR,
   SET_LOADING,
   REMOVE_ERROR,
@@ -31,20 +30,14 @@ export default (state, action) => {
     case GET_RAND_IMG:
       return {
         ...state,
-        images: action.payload,
+        randImages: action.payload,
         loading: false,
       };
-    case SEARCH_IMAGES_INFO:
+    case SEARCH_IMAGE_INFO:
       return {
         ...state,
-        details: action.payload,
+        imageInfo: action.payload,
         loading: false,
-      };
-    case SEARCH_IMAGES_INFO_1:
-      return {
-        ...state,
-        details: action.payload,
-        // loading: false,
       };
     case SET_ERROR:
       return {

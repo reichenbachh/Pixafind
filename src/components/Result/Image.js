@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect, useContext } from "react";
-import ImageDetails from "./ImageDetails";
+import React, { useEffect, useContext } from "react";
 import Pagination from "../layout/Pagination";
 import ImageItem from "./ImageItem";
 import Preloader from "../layout/Preloader";
@@ -9,8 +8,8 @@ const Image = () => {
   const searchContext = useContext(SearchContext);
   const {
     getRandImg,
-    fetchInfoRand,
     images,
+    randImages,
     loading,
     rand,
     totalResults,
@@ -20,7 +19,6 @@ const Image = () => {
 
   useEffect(() => {
     getRandImg();
-    fetchInfoRand();
     // eslint-disable-next-line
   }, []);
 
@@ -30,7 +28,7 @@ const Image = () => {
   } else if (rand) {
     return (
       <div className='image-container'>
-        {images.map((image) => (
+        {randImages.map((image) => (
           <ImageItem image={image} data={image.location} key={image.id} />
         ))}
         {totalResults > 30 ? (

@@ -1,22 +1,32 @@
-import React, { useContext } from "react";
+import React, { Fragment, useEffect, useContext } from "react";
 import SearchContext from "../../context/Search/SearchContext";
+import Preloader from "../layout/Preloader";
 
-const ImageDetails = ({ count }) => {
+const ImageDetails = ({ match }) => {
   const searchContext = useContext(SearchContext);
-  const { details } = searchContext;
-  const { user } = details;
+  useEffect(() => {
+    searchContext.fetchImgInfo(match.params.id);
+    // eslint-disable-next-line
+  }, []);
+  const { imageInfo, loading } = searchContext;
+  const {
+    alt_description,
+    likes,
+    views,
+    sponsorship,
+    user,
+    urls,
+    location,
+  } = imageInfo;
 
+  if (loading) return <Preloader />;
   return (
-    <div id='image-detail-modal' class='modal'>
-      <div class='modal-content'>
-        <h4>{details.alt_description}</h4>
-      </div>
-      <div class='modal-footer'>
-        <a href='#!' class='modal-close waves-effect waves-green btn-flat'>
-          Agree
-        </a>
-      </div>
-    </div>
+    <Fragment>
+      <p>{alt_description}</p>
+      <p>{likes}</p>
+      <p>{user.bio}</p>
+      <img src={urls.small} alt='' />
+    </Fragment>
   );
 };
 

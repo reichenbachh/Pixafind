@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import Search from "./components/Search";
-import Image from "./components/Result/Image";
-
-import Error from "./components/layout/Error";
-import Nav from "./components/layout/Nav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
 import SearchState from "./context/Search/SearchState";
+import ImageDetails from "./components/Result/ImageDetails";
+import StartupPage from "./components/pages/StartupPage";
 import "./App.css";
 
 function App() {
@@ -15,12 +13,14 @@ function App() {
   });
   return (
     <SearchState>
-      <div className='App'>
-        <Nav />
-        <Error />
-        <Search />
-        <Image />
-      </div>
+      <Router>
+        <div className='App'>
+          <Switch>
+            <Route exact path='/' component={StartupPage} />
+            <Route exact path='/imageDetails/:id' component={ImageDetails} />
+          </Switch>
+        </div>
+      </Router>
     </SearchState>
   );
 }
