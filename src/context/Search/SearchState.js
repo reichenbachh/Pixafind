@@ -19,7 +19,8 @@ const SearchState = (props) => {
     randImages: [],
     loading: true,
     error: null,
-    imageInfo: {},
+    imageInfo: null,
+    userInfo: {},
     rand: true,
     query: "",
     totalResults: 0,
@@ -81,6 +82,25 @@ const SearchState = (props) => {
       });
     }
   };
+
+  //Fetch random state placeholder image details
+  // Fetch Email details
+  const fetchImgInfoStart = async () => {
+    try {
+      const res = await axios.get(
+        `https://api.unsplash.com/photos/DOsGa5tACFA/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`
+      );
+      dispatch({
+        type: SEARCH_IMAGE_INFO,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: SEARCH_FAIL,
+        payload: error,
+      });
+    }
+  };
   //Pagination logic
   //next page method
   const nextpage = async (PageNumber, query) => {
@@ -127,6 +147,7 @@ const SearchState = (props) => {
         images: state.images,
         randImages: state.randImages,
         imageInfo: state.imageInfo,
+        userInfo: state.userInfo,
         error: state.error,
         loading: state.loading,
         rand: state.rand,
@@ -139,6 +160,7 @@ const SearchState = (props) => {
         getRandImg,
         srchImg,
         fetchImgInfo,
+        fetchImgInfoStart,
       }}
     >
       {props.children}

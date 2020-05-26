@@ -37,6 +37,7 @@ export default (state, action) => {
       return {
         ...state,
         imageInfo: action.payload,
+        userInfo: action.payload.user,
         loading: false,
       };
     case SET_ERROR:
