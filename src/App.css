@@ -6,6 +6,8 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* navigation bar styling */
 .nav {
   background: #dee3de;
   display: flex;
@@ -13,10 +15,13 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+/* overide materilise css default bottom padding */
 .row {
   margin-bottom: none;
 }
 
+/* style for image search tags */
 .tags {
   background: #d3d3d3;
   font-size: 24px;
@@ -36,6 +41,7 @@ body {
   flex-wrap: wrap;
 }
 
+/* image search area styling */
 .wrapper {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("./assets/bg.jpg") no-repeat center center/cover;
@@ -83,22 +89,6 @@ body {
   font-size: 25px;
 }
 
-::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  color: #fff;
-}
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #fff;
-}
-:-ms-input-placeholder {
-  /* IE 10+ */
-  color: #fff;
-}
-.srch {
-  cursor: pointer;
-}
-
 /* Notification style */
 .notify {
   position: absolute;
@@ -114,6 +104,7 @@ body {
   transition: height 0.2s;
 }
 
+/* image search results styling */
 .image-container {
   background: #dee3de;
   overflow-x: hidden;
@@ -180,4 +171,105 @@ body {
   .search_box {
     width: 100%;
   }
+}
+
+/* image details page styling */
+.full-image img {
+  cursor: pointer;
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+.imageDetails-wrapper {
+  padding: 1rem 2rem 1rem;
+  background: #f0f0f0 no-repeat center center/cover;
+  background-attachment: fixed;
+  height: 87vh;
+}
+
+.image-details {
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: seashell;
+}
+.profile {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.imageDetails-wrapper p {
+  font-size: 20px;
+}
+.profile div {
+  padding: 0 0.2rem 0;
+}
+
+.bio {
+  padding: 1rem;
+  margin-top: 1rem;
+  /* border-bottom: 3px green solid; */
+}
+.profile p {
+  font-size: 25px;
+  margin-top: 2rem;
+}
+
+.social {
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.portfolio {
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-description {
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.stats {
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fa-eye {
+  color: lightblue;
+}
+
+.fa-heart {
+  color: red;
+}
+.fa-twitter {
+  color: #00acee;
+}
+
+.fa-instagram {
+  color: #8a3ab9;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #fff;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #fff;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #fff;
+}
+.srch {
+  cursor: pointer;
 }
