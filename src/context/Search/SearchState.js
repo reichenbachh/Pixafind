@@ -8,7 +8,7 @@ import {
   SET_ERROR,
   GET_RAND_IMG,
   SEARCH_IMAGES_PAG,
-  SET_LOADING,
+  CLEAR_CURRENT,
   SEARCH_FAIL,
   REMOVE_ERROR,
 } from "../types";
@@ -29,7 +29,7 @@ const SearchState = (props) => {
 
   const [state, dispatch] = useReducer(SearchReducer, initialState);
 
-  //Fetch Random Images from pixabay
+  //Fetch Random Images for start up page from unsplash API
   const getRandImg = async () => {
     try {
       const res = await axios.get(
@@ -47,7 +47,7 @@ const SearchState = (props) => {
     }
   };
 
-  //search Images
+  //Fetch information from API based on dynamic use input
   const srchImg = async (query) => {
     try {
       const res = await axios.get(
@@ -65,7 +65,7 @@ const SearchState = (props) => {
     }
   };
 
-  // Fetch Email details
+  // Fetch Image Details
   const fetchImgInfo = async (id) => {
     try {
       const res = await axios.get(
@@ -83,24 +83,6 @@ const SearchState = (props) => {
     }
   };
 
-  //Fetch random state placeholder image details
-  // Fetch Email details
-  const fetchImgInfoStart = async () => {
-    try {
-      const res = await axios.get(
-        `https://api.unsplash.com/photos/DOsGa5tACFA/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`
-      );
-      dispatch({
-        type: SEARCH_IMAGE_INFO,
-        payload: res.data,
-      });
-    } catch (error) {
-      dispatch({
-        type: SEARCH_FAIL,
-        payload: error,
-      });
-    }
-  };
   //Pagination logic
   //next page method
   const nextpage = async (PageNumber, query) => {
@@ -118,6 +100,13 @@ const SearchState = (props) => {
         payload: error,
       });
     }
+  };
+
+  //Clears current image info before new information is pushed to the state
+  const clearCurrent = () => {
+    dispatch({
+      type: CLEAR_CURRENT,
+    });
   };
   //Set Error
   const setError = (message) => {
@@ -137,30 +126,24 @@ const SearchState = (props) => {
       });
     }, 3000);
   };
-
-  const test = async () => {
-    console.log(true);
-  };
   return (
     <SearchContext.Provider
       value={{
         images: state.images,
         randImages: state.randImages,
         imageInfo: state.imageInfo,
-        userInfo: state.userInfo,
         error: state.error,
         loading: state.loading,
         rand: state.rand,
         query: state.query,
         currentPage: state.currentPage,
         totalResults: state.totalResults,
+        clearCurrent,
         nextpage,
-        test,
         setError,
         getRandImg,
         srchImg,
         fetchImgInfo,
-        fetchImgInfoStart,
       }}
     >
       {props.children}

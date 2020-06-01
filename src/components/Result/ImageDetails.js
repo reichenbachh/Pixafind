@@ -4,11 +4,9 @@ import Preloader from "../layout/Preloader";
 
 const ImageDetails = ({ match }) => {
   const searchContext = useContext(SearchContext);
-  console.log(window.location.pathname);
-  const { imageInfo, userInfo, loading, fetchImgInfo } = searchContext;
-
-  console.log(userInfo);
+  const { imageInfo, loading, fetchImgInfo, clearCurrent } = searchContext;
   useEffect(() => {
+    clearCurrent();
     fetchImgInfo(match.params.id);
     // eslint-disable-next-line
   }, []);

@@ -3,7 +3,7 @@ import {
   SEARCH_IMAGES_PAG,
   SEARCH_IMAGE_INFO,
   SET_ERROR,
-  SET_LOADING,
+  CLEAR_CURRENT,
   REMOVE_ERROR,
   GET_RAND_IMG,
 } from "../types";
@@ -37,8 +37,12 @@ export default (state, action) => {
       return {
         ...state,
         imageInfo: action.payload,
-        userInfo: action.payload.user,
-        loading: false,
+        loading: true,
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        imageinfo: null,
       };
     case SET_ERROR:
       return {

@@ -274,14 +274,14 @@ body {
 .srch {
   cursor: pointer;
 }
-/* @media only screen and (max-width: 993px) {
-  .row .col.l3 {
-    width: 100%;
-    margin-left: auto;
-    left: auto;
-    right: auto;
-  }
-} */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 80vh;
+}
 
 @media only screen and (min-width: 601px) {
   .row .col.m4 {
