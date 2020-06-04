@@ -31,15 +31,6 @@ const Image = () => {
         {randImages.map((image) => (
           <ImageItem image={image} data={image.location} key={image.id} />
         ))}
-        {totalResults > 30 ? (
-          <Pagination
-            pages={numberPages}
-            currentPage={currentPage}
-            query={query}
-          />
-        ) : (
-          " "
-        )}
       </div>
     );
   } else {

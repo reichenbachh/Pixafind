@@ -14,6 +14,14 @@ import {
 } from "../types";
 
 const SearchState = (props) => {
+  let unsplashApiKey;
+
+  //Check environment
+  if (process.env.NODE_ENV !== "production") {
+    unsplashApiKey = process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY;
+  } else {
+    unsplashApiKey = process.env.UNSPLASH_API_ACCESS_KEY;
+  }
   const initialState = {
     images: [],
     randImages: [],
@@ -33,7 +41,7 @@ const SearchState = (props) => {
   const getRandImg = async () => {
     try {
       const res = await axios.get(
-        `https://api.unsplash.com/photos/random?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}&count=30`
+        `https://api.unsplash.com/photos/random?client_id=${unsplashApiKey}&count=30`
       );
       dispatch({
         type: GET_RAND_IMG,
@@ -51,7 +59,7 @@ const SearchState = (props) => {
   const srchImg = async (query) => {
     try {
       const res = await axios.get(
-        `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}&page=1&per_page=30&query=${query}`
+        `https://api.unsplash.com/search/photos/?client_id=${unsplashApiKey}&page=1&per_page=30&query=${query}`
       );
       dispatch({
         type: SEARCH_IMAGES,
@@ -69,7 +77,7 @@ const SearchState = (props) => {
   const fetchImgInfo = async (id) => {
     try {
       const res = await axios.get(
-        `https://api.unsplash.com/photos/${id}/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`
+        `https://api.unsplash.com/photos/${id}/?client_id=${unsplashApiKey}`
       );
       dispatch({
         type: SEARCH_IMAGE_INFO,
@@ -88,7 +96,7 @@ const SearchState = (props) => {
   const nextpage = async (PageNumber, query) => {
     try {
       const res = await axios.get(
-        `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}&page=${PageNumber}&per_page=30&query=${query}`
+        `https://api.unsplash.com/search/photos/?client_id=${unsplashApiKey}&page=${PageNumber}&per_page=30&query=${query}`
       );
       dispatch({
         type: SEARCH_IMAGES_PAG,

@@ -37,12 +37,13 @@ export default (state, action) => {
       return {
         ...state,
         imageInfo: action.payload,
-        loading: true,
+        loading: false,
       };
     case CLEAR_CURRENT:
       return {
         ...state,
         imageinfo: null,
+        loading: true,
       };
     case SET_ERROR:
       return {

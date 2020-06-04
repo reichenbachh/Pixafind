@@ -6,7 +6,7 @@ const ImageItem = ({ image: { urls, user, likes, views, id } }) => {
   const searchContext = useContext(SearchContext);
   return (
     <div className='image-holder'>
-      <Link to={`/imageDetails/${id}`} className='modal-trigger'>
+      <Link to={`/imageDetails/${id}`}>
         <img src={urls.small} alt='' srcSet='' />
       </Link>
       <div className='info'>

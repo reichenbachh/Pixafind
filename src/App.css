@@ -187,12 +187,10 @@ body {
 }
 
 .image-details {
-  /* width: 100%; */
-  /* padding: 2rem !important; */
   margin: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  background: seashell;
+  background: #dee3de;
 }
 .profile {
   padding: 1rem;
@@ -210,7 +208,6 @@ body {
 .bio {
   padding: 1rem;
   margin-top: 1rem;
-  /* border-bottom: 3px green solid; */
 }
 .profile p {
   font-size: 25px;
